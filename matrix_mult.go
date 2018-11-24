@@ -2,25 +2,44 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"time"
 
 	"gonum.org/v1/gonum/mat"
 )
 
+var x = 500
+var k = 500
+var y = 500
+
+func randFloats(n int) []float64 {
+	res := make([]float64, n)
+	for i := range res {
+		res[i] = rand.Float64()
+	}
+	return res
+}
 func main() {
-	u := mat.NewDense(3, 3, []float64{1, 2, 3,
-		4, 5, 6,
-		7, 8, 9,
-	})
-	v := mat.NewDense(3, 3, []float64{1, 2, 3,
-		4, 5, 6,
-		7, 8, 9,
-	})
-	c := mat.NewDense(3, 3, nil)
+	u_raw := randFloats(x * k)
+	v_raw := randFloats(k * y)
+
+	u := mat.NewDense(x, k, u_raw)
+
+	v := mat.NewDense(k, y, v_raw)
+
+	// Start Timing
 	a := time.Now()
+	c := mat.NewDense(x, y, nil)
 	c.Mul(u, v)
 	d := time.Now()
+	// End Timing
+
 	duration := d.Sub(a)
-	fmt.Print("Duration is ", duration)
-	fmt.Println(mat.Formatted(c, mat.Prefix(" "), mat.Squeeze()))
+
+	// fmt.Println("u = ", mat.Formatted(u, mat.Prefix(" "), mat.Squeeze()))
+	// fmt.Println("v = ", mat.Formatted(v, mat.Prefix(" "), mat.Squeeze()))
+	// fmt.Println("result=", mat.Formatted(c, mat.Prefix(" "), mat.Squeeze()))
+
+	fmt.Println("Duration is ", duration.Seconds())
+
 }

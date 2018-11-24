@@ -1,25 +1,12 @@
 import numpy as np
 import time
-
-a = np.array((
-    (1,2,3),
-    (4,5,6),
-    (7,8,9)
-    )
-)
-
-b = np.array((
-    (1,2,3),
-    (4,5,6),
-    (7,8,9)
-    )
-)
-
+x,k,y = 500,500,500
+a = np.random.rand(x,k)
+b = np.random.rand(k,y)
 
 # Time it from here
 t = time.time()
 c  = np.matmul(a,b)
 d = time.time() - t
 
-print("Time %s µs"%(d*10**6))
-print(c)
+print("Time %s s"%(d))
