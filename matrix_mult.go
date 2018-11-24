@@ -40,6 +40,6 @@ func main() {
 	// fmt.Println("v = ", mat.Formatted(v, mat.Prefix(" "), mat.Squeeze()))
 	// fmt.Println("result=", mat.Formatted(c, mat.Prefix(" "), mat.Squeeze()))
 
-	fmt.Println("Duration is ", duration.Seconds())
+	fmt.Println("Duration is ", duration.Seconds(), "s")
 
 }
